@@ -1,0 +1,50 @@
+body {
+    margin: auto;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    background-color: pink;
+
+    padding: 0;
+    border: 1px solid black;
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    display: flex;
+}
+
+header h1 a{
+    text-decoration: none;
+    padding: 0.5em;
+
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1em;
+    padding-top: 1em;
+    
+}
+
+nav li {
+    padding: 0.5em;
+    list-style: none;
+}
+
+nav li a {
+    text-decoration: none;
+}
+
+section {
+    background-color: rgba(245, 41, 92, 0.555);
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
