@@ -3,12 +3,12 @@ body {
     padding: 0;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr ;
 }
 
 header {
-    background-color: pink;
+    background-color: rgb(245, 204, 204);
 
     padding: 0;
     border: 1px solid black;
@@ -42,9 +42,94 @@ nav li a {
     text-decoration: none;
 }
 
-section {
-    background-color: rgba(245, 41, 92, 0.555);
-    padding: 0;
+.header-section {
+    background: rgb(255, 159, 159);
+}
+
+main {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+    padding: 0.5em;
+}
+
+.todo-list {
+    grid-column: 1;
+
+    background: rgba(255, 159, 159, 0.274);
+    border-radius: 10px;
+    height: 100vh;
+    padding: 10px;
+}
+
+.todo-list header {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgb(202, 178, 178);
+    border: none;
+}
+
+.todo-list header h2 {
+    background: rgb(255, 191, 191);
+    line-height: 50px;
+    
     margin: 0;
-    border: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: .6rem 1rem;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.todo-list header button {
+    align-self: center;
+    padding: 0.5em;
+    border-radius: 10px;
+    width: 120px;
+    margin: 5px;
+    cursor: pointer;
+    
+
+}
+
+.doing-list {
+    grid-column: 2;
+}
+
+.doing-list header {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.done-list {
+    grid-column: 3;
+}
+
+.done-list header {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    background: rgb(245, 204, 204);
+    margin-top: 10px;
 }
