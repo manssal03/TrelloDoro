@@ -260,3 +260,21 @@ footer {
   background: rgb(245, 204, 204);
   margin-top: 10px;
 }
+
+
+.todo-list ul li input[type="text"],
+.todo-list ul li textarea {
+  display: block;
+  width: calc(100% - 1rem);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  background: #fff;
+}
+
+.field-error {
+  outline: 2px solid red;
+}
