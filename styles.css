@@ -1,5 +1,5 @@
 body {
-  margin: auto;
+  margin: 0;
   padding: 0;
 
   display: grid;
@@ -28,7 +28,7 @@ header h1 a {
   color: black;
 }
 
-nav {
+nav ul{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,6 +62,7 @@ main {
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
   gap: 1em;
   padding: 0.5em;
   min-height: 0;
@@ -130,28 +131,42 @@ main {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  max-height: fit-content;
 }
 
-.todo-list ul li {
-  background-color: grey;
-  color: white;
+.todo-list ul li,
+.doing-list ul li,
+.done-list ul li
+{
+  background-color: rgba(128, 128, 128, 0.586);
+  color: rgb(255, 255, 255);
   padding: 0;
   border-radius: 10px;
+  border: 1px solid black;
 }
 
-.todo-list ul li h3 {
+.todo-list ul li h3,
+.doing-list ul li h3,
+.done-list ul li h3
+{
   margin: 0;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   padding: 10px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
 
-.todo-list ul li p {
+.todo-list ul li p,
+.doing-list ul li p,
+.done-list ul li p
+ {
   padding: 0.5em;
 }
 
-.todo-list ul li button {
+.todo-list ul li button,
+.doing-list ul li button,
+.done-list ul li button
+ {
   margin: 0.5em;
   float: right;
 }
@@ -194,6 +209,7 @@ main {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  max-height: fit-content;
 }
 
 .done-list {
@@ -206,8 +222,8 @@ main {
   border: 2px solid black;
 
   display: flex;
-  flex-direction: column;
   overflow: hidden;
+  flex-direction: column;
 }
 
 .done-list header {
@@ -234,6 +250,7 @@ main {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  max-height: fit-content;
 }
 
 footer {
