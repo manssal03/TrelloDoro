@@ -135,12 +135,25 @@ main {
 .todo-list ul li {
   background-color: grey;
   color: white;
-  padding: 10px;
+  padding: 0;
+  border-radius: 10px;
 }
 
 .todo-list ul li h3 {
   margin: 0;
   background-color: black;
+  padding: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.todo-list ul li p {
+  padding: 0.5em;
+}
+
+.todo-list ul li button {
+  margin: 0.5em;
+  float: right;
 }
 
 .doing-list {
