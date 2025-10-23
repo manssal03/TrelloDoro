@@ -273,6 +273,7 @@ footer {
   box-sizing: border-box;
   color: #000;
   background: #fff;
+  resize: none;
 }
 
 .field-error {

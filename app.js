@@ -3,8 +3,8 @@
 const addTaskBtn = document.getElementById("addTaskBtn");
 const todoUI = document.getElementById("task-todo");
 
-function setEditor (li, title = " ", desc = " "){
-    li.innerHtml = "";
+function setEditor (li, title = "", desc = ""){
+    li.innerHTML = "";
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
@@ -17,10 +17,10 @@ function setEditor (li, title = " ", desc = " "){
     descInput.value = desc;
 
     const okBtn = document.createElement("button");
-    okBtn.textContent("Klar");
+    okBtn.textContent = "Klar";
 
     const cancelBtn = document.createElement("button");
-    cancelBtn.textContent("Avbryt");
+    cancelBtn.textContent = "Avbryt";
 
     li.append(titleInput, descInput, okBtn, cancelBtn);
     titleInput.focus();
@@ -53,7 +53,7 @@ function setEditor (li, title = " ", desc = " "){
 }
 
 function setLocked(li, title, desc) {
-    li.innerHtml= "";
+    li.innerHTML= "";
 
     const h3 = document.createElement("h3");
     h3.textContent = title;
