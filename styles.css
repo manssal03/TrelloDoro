@@ -132,6 +132,17 @@ main {
   min-height: 0;
 }
 
+.todo-list ul li {
+  background-color: grey;
+  color: white;
+  padding: 10px;
+}
+
+.todo-list ul li h3 {
+  margin: 0;
+  background-color: black;
+}
+
 .doing-list {
   grid-column: 2;
 
