@@ -1,8 +1,16 @@
-//Function to add task
-
 const addTaskBtn = document.getElementById("addTaskBtn");
 const todoUI = document.getElementById("task-todo");
 
+const editDialog = document.getElementById("editDialog");
+const editForm = document.getElementById("editForm");
+const editTitle = document.getElementById("editTitle");
+const editDesc = document.getElementById("editDesc");
+const cancelBtn = document.getElementById("cancelBtn");
+
+//The li element that is edited in the dialog
+let currentTask = null;
+
+//Function to add task
 function setEditor (li, title = "", desc = ""){
     li.innerHTML = "";
 
@@ -19,10 +27,10 @@ function setEditor (li, title = "", desc = ""){
     const okBtn = document.createElement("button");
     okBtn.textContent = "Klar";
 
-    const cancelBtn = document.createElement("button");
-    cancelBtn.textContent = "Avbryt";
+    const cancelInLineBtn = document.createElement("button");
+    cancelInLineBtn.textContent = "Avbryt";
 
-    li.append(titleInput, descInput, okBtn, cancelBtn);
+    li.append(titleInput, descInput, okBtn, cancelInLineBtn);
     titleInput.focus();
 
     okBtn.addEventListener("click", () => {
@@ -36,7 +44,7 @@ function setEditor (li, title = "", desc = ""){
         setLocked(li, t, d);
     });
 
-    cancelBtn.addEventListener("click", () => {
+    cancelInLineBtn.addEventListener("click", () => {
         if(!title && !desc) {
             li.remove();
         } else {
@@ -52,6 +60,7 @@ function setEditor (li, title = "", desc = ""){
     });
 }
 
+//Locked mode, shows edit button
 function setLocked(li, title, desc) {
     li.innerHTML= "";
 
@@ -64,6 +73,10 @@ function setLocked(li, title, desc) {
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
 
+    editBtn.addEventListener("click", () => {
+        openEditDialog(li);
+    })
+
     li.append(h3, p, editBtn);
 
 }
@@ -73,4 +86,41 @@ addTaskBtn.addEventListener("click", () => {
     todoUI.appendChild(li);
     setEditor(li);
     li.scrollIntoView({block: "nearest"})
-})
+});
+
+function openEditDialog(taskItem) {
+    currentTask = taskItem;
+    const title = taskItem.querySelector("h3")?.textContent ?? "";
+    const desc = taskItem.querySelector("p")?.textContent ?? "";
+
+    editTitle.value = title;
+    editDesc.value = desc;
+
+    //Visar dialogen
+    editDialog.showModal();
+
+    editTitle.focus();
+    editTitle.select?.();
+}
+
+editForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(!currentTask) {
+        editDialog.close();
+        return;
+    }
+
+    const newTitle = editTitle.value.trim();
+    const newDesc = editDesc.value.trim();
+
+    if(!newTitle) {
+        editTitle.focus();
+        return;
+    }
+
+    currentTask.querySelector("h3").textContent = newTitle;
+    currentTask.querySelector("p").textContent = newDesc;
+
+    editDialog.close();
+    currentTask = null;
+});

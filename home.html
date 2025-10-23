@@ -50,6 +50,28 @@
     <footer>
       <h1>Detta är min footer</h1>
     </footer>
+
+    <dialog id="editDialog">
+      <form id="editForm" method="dialog" aria-labelledby="editTitleLabel">
+        <h2>Redigera uppgift</h2>
+
+        <label>
+          Titel:
+          <input type="text" name="title" id="editTitle" required>
+        </label>
+
+        <label>
+          Beskrivning:
+          <textarea name="desc" id="editDesc" rows="3"></textarea>
+        </label>
+
+        <menu>
+          <button type="button" id="cancelBtn">Avbryt</button>
+          <button type="submit">Spara</button>
+        </menu>
+      </form>
+    </dialog>
+
     <script src="app.js"></script>
   </body>
 </html>
