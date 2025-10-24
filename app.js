@@ -2,12 +2,11 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 const todoUI = document.getElementById("task-todo");
 
 const editDialog = document.getElementById("editDialog");
-const editForm = document.getElementById("editForm");
+const editForm = document.getElementById("editForm");       //Get elements from html document
 const editTitle = document.getElementById("editTitle");
 const editDesc = document.getElementById("editDesc");
-const cancelBtn = document.getElementById("cancelBtn");
 
-//The li element that is edited in the dialog
+//The li element that is edited in the dialog, acts as a pointer
 let currentTask = null;
 
 //Function to add task
@@ -89,6 +88,7 @@ addTaskBtn.addEventListener("click", () => {
 });
 
 function openEditDialog(taskItem) {
+    //Pointer
     currentTask = taskItem;
     const title = taskItem.querySelector("h3")?.textContent ?? "";
     const desc = taskItem.querySelector("p")?.textContent ?? "";
@@ -96,7 +96,7 @@ function openEditDialog(taskItem) {
     editTitle.value = title;
     editDesc.value = desc;
 
-    //Visar dialogen
+    //Shows dialog
     editDialog.showModal();
 
     editTitle.focus();

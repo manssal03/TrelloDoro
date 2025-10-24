@@ -279,3 +279,43 @@ footer {
 .field-error {
   outline: 2px solid red;
 }
+
+dialog {
+  background-color: grey;
+  width: 700px;
+  height: 500px;
+}
+
+dialog form {
+  border-radius: 10px;
+  background-color: rgba(255, 250, 250, 0.637);
+  padding: 0px;
+}
+
+dialog form h2 {
+  background-color: black;
+  color: white;
+  display: flex;
+  padding: 5px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius:10px ;
+  border-top-right-radius: 10px;
+
+}
+
+dialog label {
+  display: block;
+  padding: 10px;
+}
+
+dialog input[type=text] {
+  width: 50%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
