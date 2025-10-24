@@ -1,13 +1,104 @@
 const addTaskBtn = document.getElementById("addTaskBtn");
 const todoUI = document.getElementById("task-todo");
+const doingUI = document.getElementById("task-doing");
+const doneUI = document.getElementById("task-done");
+
+const todoCol = document.querySelector(".todo-list");
+const doingCol = document.querySelector(".doing-list");
+const doneCol = document.querySelector(".done-list");
+
+const lists = {         //To refer to the lists
+    todo: todoUI,
+    doing: doingUI,
+    done: doneUI,
+};
 
 const editDialog = document.getElementById("editDialog");
 const editForm = document.getElementById("editForm");       //Get elements from html document
 const editTitle = document.getElementById("editTitle");
 const editDesc = document.getElementById("editDesc");
+const editList = document.getElementById("editList");
 
 //The li element that is edited in the dialog, acts as a pointer
 let currentTask = null;
+
+//Pointer to point to which card is being pulled
+let draggedCard = null;
+
+//Help-function to see what card is in what list
+function parentOfList (li) {
+    const pid = li?.parentElement?.id;
+    if(pid === "task-todo") return "todo";
+    if(pid === "task-doing") return "doing";
+    if(pid == "task-done") return "done";
+    return "todo";
+}
+
+//Function to make a card draggable
+function makeDraggable (li){
+    li.draggable = true;
+    li.classList.add("task-card");
+
+    li.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", "move");
+        e.dataTransfer.effectAllowed = "move";
+
+        draggedCard = li;
+        li.classList.add("dragging");
+    })
+
+    li.addEventListener("dragend", () => {
+        draggedCard = null;
+        li.classList.remove("dragging");
+    })
+
+    li.querySelectorAll("button").forEach(btn => {btn.draggable = false; })
+}
+
+//Allows to drop a card in a list
+function setupDropTarget(targetEl, useCapture = false){
+    if(!targetEl) return;
+    const getListEl = (el) => {
+        if(el.tagName === "ARTICLE") return el.querySelector("ul");
+        return el;
+    };
+
+    const onDragOver = (e) => {
+        e.preventDefault();         //IMPORTANT: becomes just a text-drop to the child if not there
+        try {e.dataTransfer.dropEffect = "move"} catch {}
+        targetEl.classList.add("drop-target");
+    };
+
+    const onDragLeave = () => {
+        targetEl.classList.remove("drop-target");
+    };
+
+    const onDrop = (e) => {
+        e.preventDefault();
+        targetEl.classList.remove("drop-target");
+        
+        if(draggedCard) {
+            const listEl = getListEl(targetEl);
+            if(listEl) {
+                listEl.appendChild(draggedCard);
+                draggedCard.dataset.list = parentOfList(draggedCard);
+            }
+        }
+    };
+    targetEl.addEventListener("dragover", onDragOver, useCapture);
+    targetEl.addEventListener("dragleave", onDragLeave, useCapture);
+    targetEl.addEventListener("drop", onDrop, useCapture);
+}
+
+//Activate drop on all lists
+setupDropTarget(todoUI);
+setupDropTarget(doingUI);
+setupDropTarget(doneUI);
+
+setupDropTarget(todoCol, true);
+setupDropTarget(doingCol, true);
+setupDropTarget(doneCol, true);
+
 
 //Function to add task
 function setEditor (li, title = "", desc = ""){
@@ -78,10 +169,14 @@ function setLocked(li, title, desc) {
 
     li.append(h3, p, editBtn);
 
+    //Makes card draggable
+    if(!li.draggable) makeDraggable(li);
+
 }
 
 addTaskBtn.addEventListener("click", () => {
     const li = document.createElement("li");
+    li.dataset.list = "todo";             //Track a list
     todoUI.appendChild(li);
     setEditor(li);
     li.scrollIntoView({block: "nearest"})
@@ -95,6 +190,7 @@ function openEditDialog(taskItem) {
 
     editTitle.value = title;
     editDesc.value = desc;
+    editList.value = parentOfList(taskItem);
 
     //Shows dialog
     editDialog.showModal();
@@ -112,6 +208,7 @@ editForm.addEventListener("submit", (e) => {
 
     const newTitle = editTitle.value.trim();
     const newDesc = editDesc.value.trim();
+    const newListKey = editList.value;
 
     if(!newTitle) {
         editTitle.focus();
@@ -120,6 +217,12 @@ editForm.addEventListener("submit", (e) => {
 
     currentTask.querySelector("h3").textContent = newTitle;
     currentTask.querySelector("p").textContent = newDesc;
+
+    const currentKey = parentOfList(currentTask);
+    if(newListKey !== currentKey) {
+        lists[newListKey].appendChild(currentTask);
+        currentTask.dataset.list = newListKey;
+    }
 
     editDialog.close();
     currentTask = null;

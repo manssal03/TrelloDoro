@@ -28,7 +28,7 @@ header h1 a {
   color: black;
 }
 
-nav ul{
+nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +125,7 @@ main {
 .todo-list ul {
   list-style: none;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px 0 10px 0;
   display: grid;
   gap: 0.75em;
   overflow-y: auto;
@@ -136,19 +136,18 @@ main {
 
 .todo-list ul li,
 .doing-list ul li,
-.done-list ul li
-{
+.done-list ul li {
   background-color: rgba(128, 128, 128, 0.586);
   color: rgb(255, 255, 255);
-  padding: 0;
+  padding: 0px;
+
   border-radius: 10px;
   border: 1px solid black;
 }
 
 .todo-list ul li h3,
 .doing-list ul li h3,
-.done-list ul li h3
-{
+.done-list ul li h3 {
   margin: 0;
   background-color: rgb(0, 0, 0);
   padding: 10px;
@@ -158,15 +157,14 @@ main {
 
 .todo-list ul li p,
 .doing-list ul li p,
-.done-list ul li p
- {
-  padding: 0.5em;
+.done-list ul li p {
+  padding: 10px;
+  margin: 0;
 }
 
 .todo-list ul li button,
 .doing-list ul li button,
-.done-list ul li button
- {
+.done-list ul li button {
   margin: 0.5em;
   float: right;
 }
@@ -203,7 +201,7 @@ main {
 .doing-list ul {
   list-style: none;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px 0 10px 0;
   display: grid;
   gap: 0.75em;
   flex: 1;
@@ -244,7 +242,7 @@ main {
 .done-list ul {
   list-style: none;
   margin: 0;
-  padding: 0.5em;
+  padding: 10px 0 10px 0;
   display: grid;
   gap: 0.75em;
   flex: 1;
@@ -260,7 +258,6 @@ footer {
   background: rgb(245, 204, 204);
   margin-top: 10px;
 }
-
 
 .todo-list ul li input[type="text"],
 .todo-list ul li textarea {
@@ -283,7 +280,9 @@ footer {
 dialog {
   background-color: grey;
   width: 700px;
-  height: 500px;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 dialog form {
@@ -300,9 +299,9 @@ dialog form h2 {
   height: 50px;
   align-items: center;
   justify-content: center;
-  border-top-left-radius:10px ;
+  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-
+  margin: 0;
 }
 
 dialog label {
@@ -310,12 +309,72 @@ dialog label {
   padding: 10px;
 }
 
-dialog input[type=text] {
-  width: 50%;
+dialog input[type="text"] {
+  width: 100%;
   padding: 12px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid black;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
+}
+
+dialog textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 14px;
+  resize: none;
+}
+
+dialog button[type="submit"] {
+  width: calc(100% - 20px);
+  background-color: #4caf50;
+  color: white;
+  padding: 14px;
+
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.drop-target {
+  outline: 2px dashed black;
+  outline-offset: 4px;
+}
+
+.task-card {
+  cursor: grab;
+}
+
+.task-card.dragging {
+  opacity: 1;
+  cursor: grabbing;
+}
+
+#task-todo li {
+  background-color: pink;
+}
+#task-todo li h3 {
+  background-color: red;
+}
+
+#task-doing li {
+  background-color: orange;
+}
+#task-doing li h3 {
+  background-color: yellow;
+}
+
+#task-done li {
+  background-color: green;
+}
+#task-done li h3 {
+  background-color: lime;
 }

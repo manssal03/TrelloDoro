@@ -29,22 +29,19 @@
           <h2>To Do</h2>
           <button id="addTaskBtn">Add task</button>
         </header>
-        <ul id="task-todo">
-        </ul>
+        <ul id="task-todo"></ul>
       </article>
       <article class="doing-list">
         <header>
           <h2>Doing</h2>
         </header>
-        <ul id="task-doing">
-        </ul>
+        <ul id="task-doing"></ul>
       </article>
       <article class="done-list">
         <header>
           <h2>Done</h2>
         </header>
-        <ul id="task-done">         
-        </ul>
+        <ul id="task-done"></ul>
       </article>
     </main>
     <footer>
@@ -57,22 +54,33 @@
 
         <label>
           <strong>Titel:</strong>
-          <input type="text" name="title" id="editTitle" required>
+          <input type="text" name="title" id="editTitle" required />
         </label>
-        <br>
+        <br />
 
         <label>
           <strong>Beskrivning:</strong>
           <textarea name="desc" id="editDesc" rows="3"></textarea>
         </label>
 
-        <menu>
-          <button type="submit">Spara</button>
-        </menu>
+        <label>
+          <strong>Flytta till:</strong>
+          <select id="editList">
+            <option value="todo">To Do</option>
+            <option value="doing">Doing</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <button type="submit">Spara</button>
       </form>
       <section>
         <h3>Pomodoro timer</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quasi dolore eius id delectus distinctio vitae perspiciatis eum, consectetur facere eligendi deserunt asperiores reprehenderit consequatur ad laudantium rerum veniam atque.</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quasi
+          dolore eius id delectus distinctio vitae perspiciatis eum, consectetur
+          facere eligendi deserunt asperiores reprehenderit consequatur ad
+          laudantium rerum veniam atque.
+        </p>
         <button>Start timer</button>
       </section>
     </dialog>
