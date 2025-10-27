@@ -15,7 +15,7 @@ header {
   background-color: rgb(245, 204, 204);
 
   padding: 0;
-  border: 1px solid black;
+  border-bottom: 2px solid black;
   grid-column-start: 1;
   grid-column-end: 4;
 
@@ -26,6 +26,10 @@ header h1 a {
   text-decoration: none;
   padding: 0.5em;
   color: black;
+}
+
+header h1 a:hover {
+  color: rgb(255, 255, 255);
 }
 
 nav ul {
@@ -39,11 +43,20 @@ nav ul {
 nav li {
   padding: 0.5em;
   list-style: none;
+  
 }
 
 nav li a {
   text-decoration: none;
   color: black;
+  border-bottom: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.445);
+  padding: 10px;
+  border-radius: 50px;
+}
+
+nav li a:hover {
+  background-color: white;
 }
 
 .header-section {
@@ -54,6 +67,7 @@ nav li a {
   border-bottom: 2px solid black;
   width: fit-content;
   height: 50px;
+  grid-column: 1 / 4;
 }
 
 main {
@@ -120,6 +134,33 @@ main {
   margin: 5px;
   cursor: pointer;
   background: rgb(234, 207, 207);
+}
+
+.todo-list header button:hover {
+  background-color: rgba(255, 255, 255, 0.589);
+}
+
+.cancel-btn, .done-btn, .edit-btn{
+  padding: 10px;
+  border-radius: 10px;
+  width: 60px;
+  cursor: pointer;
+  
+  background: rgba(255, 255, 255, 0.4);
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.6px);
+  -webkit-backdrop-filter: blur(12.6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.cancel-btn:hover, .done-btn:hover, .edit-btn:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.task-card .delete-btn:hover {
+  color: rgba(0, 0, 0, 0.411);
 }
 
 .todo-list ul {
@@ -257,6 +298,7 @@ footer {
 
   background: rgb(245, 204, 204);
   margin-top: 10px;
+  border-top: 2px solid black;
 }
 
 .todo-list ul li input[type="text"],
@@ -278,7 +320,7 @@ footer {
 }
 
 dialog {
-  background-color: grey;
+  background: linear-gradient(rgb(255, 193, 193), white);
   width: 700px;
   height: fit-content;
   border-radius: 10px;
@@ -287,13 +329,17 @@ dialog {
 
 dialog form {
   border-radius: 10px;
-  background-color: rgba(255, 250, 250, 0.637);
+      backdrop-filter: blur(15px) saturate(193%);
+    -webkit-backdrop-filter: blur(15px) saturate(193%);
+    background-color: rgba(114, 114, 114, 0.44);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
   padding: 0px;
 }
 
 dialog form h2 {
-  background-color: black;
-  color: white;
+  background-color: rgb(255, 220, 220);
+  color: rgb(0, 0, 0);
   display: flex;
   padding: 5px;
   height: 50px;
@@ -302,6 +348,18 @@ dialog form h2 {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin: 0;
+}
+
+#editList {
+  width: 100px;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#editList:focus {
+  background-color: rgb(255, 253, 229);
 }
 
 dialog label {
@@ -320,6 +378,10 @@ dialog input[type="text"] {
   font-size: 14px;
 }
 
+dialog input[type="text"]:focus {
+  background-color: rgb(255, 253, 229);
+}
+
 dialog textarea {
   width: 100%;
   height: 100px;
@@ -332,16 +394,36 @@ dialog textarea {
   resize: none;
 }
 
+dialog textarea:focus {
+  background-color: rgb(255, 253, 229);
+}
+
 dialog button[type="submit"] {
   width: calc(100% - 20px);
   background-color: #4caf50;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 14px;
 
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin: 10px;
+}
+
+#startTimer {
+  padding: 10px;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 159, 159, 0.692);
+}
+
+#startTimer:hover {
+  background-color: rgba(255, 119, 119, 0.692);
+}
+
+dialog button[type="submit"]:hover {
+  background-color: #4ec452;
 }
 
 .drop-target {

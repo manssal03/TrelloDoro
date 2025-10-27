@@ -120,9 +120,11 @@ function setEditor (li, title = "", desc = ""){
 
     const okBtn = document.createElement("button");
     okBtn.textContent = "Klar";
+    okBtn.classList.add("done-btn");
 
     const cancelInLineBtn = document.createElement("button");
     cancelInLineBtn.textContent = "Avbryt";
+    cancelInLineBtn.classList.add("cancel-btn")
 
     li.append(titleInput, descInput, okBtn, cancelInLineBtn);
     titleInput.focus();
@@ -172,6 +174,7 @@ function setLocked(li, title, desc) {
 
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
+    editBtn.classList.add("edit-btn")
 
     editBtn.addEventListener("click", () => {
         openEditDialog(li);
