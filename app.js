@@ -82,6 +82,8 @@ function setupDropTarget(targetEl, useCapture = false){
             if(listEl) {
                 listEl.appendChild(draggedCard);
                 draggedCard.dataset.list = parentOfList(draggedCard);
+                saveTasksToLocalStorage();
+                
             }
         }
     };
@@ -98,6 +100,8 @@ setupDropTarget(doneUI);
 setupDropTarget(todoCol, true);
 setupDropTarget(doingCol, true);
 setupDropTarget(doneCol, true);
+
+
 
 
 //Function to add task
@@ -132,14 +136,18 @@ function setEditor (li, title = "", desc = ""){
             return;
         }
         setLocked(li, t, d);
+        saveTasksToLocalStorage();
+        
     });
 
     cancelInLineBtn.addEventListener("click", () => {
         if(!title && !desc) {
             li.remove();
+            
         } else {
             setLocked(li, title, desc)
         }
+        saveTasksToLocalStorage();
     });
 
     titleInput.addEventListener("keydown", (e) => {
@@ -157,6 +165,8 @@ function setLocked(li, title, desc) {
     const h3 = document.createElement("h3");
     h3.textContent = title;
 
+    const delBtn = createDeleteBtn(li);
+
     const p = document.createElement("p");
     p.textContent = desc;
 
@@ -167,7 +177,7 @@ function setLocked(li, title, desc) {
         openEditDialog(li);
     })
 
-    li.append(h3, p, editBtn);
+    li.append(h3, delBtn, p, editBtn);
 
     //Makes card draggable
     if(!li.draggable) makeDraggable(li);
@@ -177,6 +187,7 @@ function setLocked(li, title, desc) {
 addTaskBtn.addEventListener("click", () => {
     const li = document.createElement("li");
     li.dataset.list = "todo";             //Track a list
+    li.classList.add("card-enter");
     todoUI.appendChild(li);
     setEditor(li);
     li.scrollIntoView({block: "nearest"})
@@ -226,4 +237,111 @@ editForm.addEventListener("submit", (e) => {
 
     editDialog.close();
     currentTask = null;
+    saveTasksToLocalStorage();
+
 });
+
+function createDeleteBtn(li) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "delete-btn";
+    btn.textContent = "X";
+    btn.title = "Delete card";
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation(); 
+        animateRemove(li);
+    });
+    btn.draggable = false;
+    return btn;
+}
+
+function animateRemove(li) {
+    li.classList.add("card-delete");
+    li.addEventListener("animationend", () =>  {
+        li.remove(); 
+        saveTasksToLocalStorage();
+    }, {once: true});
+}
+
+
+    /* SAVING TO LOCAL STORAGE */
+
+//Function to sava all tasks to localStorage
+function saveTasksToLocalStorage() {
+    //To store all tasks
+    const allTasks = [];
+
+    //Get all task cards from the three lists
+    const todoTasks = document.querySelectorAll("#task-todo li");
+    const doingTasks = document.querySelectorAll("#task-doing li");
+    const doneTasks = document.querySelectorAll("#task-done li");
+
+    //Save todo tasks
+    todoTasks.forEach(task => {
+        const title = task.querySelector("h3")?.textContent || "";
+        const desc = task.querySelector("p")?.textContent || "";
+        allTasks.push({
+            title: title,
+            desc: desc,
+            list: "todo"
+        });
+    });
+
+    //Save doing tasks
+    doingTasks.forEach(task => {
+        const title = task.querySelector("h3")?.textContent || "";
+        const desc = task.querySelector("p")?.textContent || "";
+        allTasks.push({
+            title: title,
+            desc: desc,
+            list: "doing"
+        });
+    });
+
+    //Save done tasks
+    doneTasks.forEach(task => {
+        const title = task.querySelector("h3")?.textContent || "";
+        const desc = task.querySelector("p")?.textContent || "";
+        allTasks.push({
+            title: title,
+            desc: desc,
+            list: "done"
+        });
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+}
+
+// Function to load tasks from localStorage
+function loadTasksFromLocalStorage() {
+    // Get save tasks from localStorage
+    const savedTasks = localStorage.getItem("tasks");
+
+    //If no tasks, do nothing
+    if(!savedTasks) return;
+
+    //Convert JSON string back to array
+    const tasks = JSON.parse(savedTasks);
+
+    // Add each task to the correct list
+    tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.dataset.list = task.list;
+        li.classList.add("card-enter");
+
+        // Use setLocked function to display the task
+        setLocked(li, task.title, task.desc);
+
+        //Add to the correct list
+        if (task.list === "todo") {
+            todoUI.appendChild(li);
+        } else if (task.list === "doing") {
+            doingUI.appendChild(li);
+        } else if (task.list === "done") {
+            doneUI.appendChild(li);
+        } 
+    });
+}
+
+// Call load function when page loads
+window.addEventListener("load", loadTasksFromLocalStorage);
