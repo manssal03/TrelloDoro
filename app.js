@@ -348,3 +348,9 @@ function loadTasksFromLocalStorage() {
 
 // Call load function when page loads
 window.addEventListener("load", loadTasksFromLocalStorage);
+
+
+// Opens the timer window
+document.getElementById("startTimer")?.addEventListener("click", () => {
+    window.location.href = "timer.html";
+})
