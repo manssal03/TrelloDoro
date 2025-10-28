@@ -62,11 +62,13 @@ function startTimer() {
         timer = setInterval(tick, 1000);    //Runs tick() every second
     }
 }
+
 // Pause timer
 function pauseTimer() {
     clearInterval(timer);
     running = false;
 }
+
 // Reset everything to beginning
 function resetTimer() {
     clearInterval(timer);
