@@ -110,20 +110,20 @@ function setEditor (li, title = "", desc = ""){
 
     const titleInput = document.createElement("input");
     titleInput.type = "text";
-    titleInput.placeholder = "Rubrik";
+    titleInput.placeholder = "Title";
     titleInput.value= title;
 
     const descInput = document.createElement("textarea");
     descInput.rows = 3;
-    descInput.placeholder = "Kort beskrivning";
+    descInput.placeholder = "Short description...";
     descInput.value = desc;
 
     const okBtn = document.createElement("button");
-    okBtn.textContent = "Klar";
+    okBtn.textContent = "Done";
     okBtn.classList.add("done-btn");
 
     const cancelInLineBtn = document.createElement("button");
-    cancelInLineBtn.textContent = "Avbryt";
+    cancelInLineBtn.textContent = "Cancel";
     cancelInLineBtn.classList.add("cancel-btn")
 
     li.append(titleInput, descInput, okBtn, cancelInLineBtn);

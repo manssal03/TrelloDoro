@@ -43,7 +43,6 @@ nav ul {
 nav li {
   padding: 0.5em;
   list-style: none;
-  
 }
 
 nav li a {
@@ -140,12 +139,14 @@ main {
   background-color: rgba(255, 255, 255, 0.589);
 }
 
-.cancel-btn, .done-btn, .edit-btn{
+.cancel-btn,
+.done-btn,
+.edit-btn {
   padding: 10px;
   border-radius: 10px;
-  width: 60px;
+  width: fit-content;
   cursor: pointer;
-  
+
   background: rgba(255, 255, 255, 0.4);
 
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -154,8 +155,9 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
-.cancel-btn:hover, .done-btn:hover, .edit-btn:hover {
+.cancel-btn:hover,
+.done-btn:hover,
+.edit-btn:hover {
   background-color: rgb(255, 255, 255);
 }
 
@@ -329,11 +331,11 @@ dialog {
 
 dialog form {
   border-radius: 10px;
-      backdrop-filter: blur(15px) saturate(193%);
-    -webkit-backdrop-filter: blur(15px) saturate(193%);
-    background-color: rgba(114, 114, 114, 0.44);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(15px) saturate(193%);
+  -webkit-backdrop-filter: blur(15px) saturate(193%);
+  background-color: rgba(114, 114, 114, 0.44);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
   padding: 0px;
 }
 
