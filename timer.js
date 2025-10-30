@@ -19,6 +19,14 @@ let resetBtn = document.getElementById("resetBtn");
 let skipBtn = document.getElementById("skipBtn");
 let toBoardBtn = document.getElementById("toBoardBtn");
 
+    /* Connect buttons to functions */
+
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);
+skipBtn.addEventListener("click", nextPhase);
+toBoardBtn.addEventListener("click", goToBoard);
+
         /* Functions */
     
 // Updates the text on screen
@@ -107,14 +115,6 @@ function nextPhase() {
 function goToBoard() {
     window.location.href = "home.html";
 }
-
-    /* Connect buttons to functions */
-
-startBtn.addEventListener("click", startTimer);
-pauseBtn.addEventListener("click", pauseTimer);
-resetBtn.addEventListener("click", resetTimer);
-skipBtn.addEventListener("click", nextPhase);
-toBoardBtn.addEventListener("click", goToBoard);
 
 // Shows 25:00 and "Focus" when page is loaded
 updateDisplay();
