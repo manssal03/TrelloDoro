@@ -301,6 +301,7 @@ footer {
   background: rgb(245, 204, 204);
   margin-top: 10px;
   border-top: 2px solid black;
+  text-align: center;
 }
 
 .todo-list ul li input[type="text"],
