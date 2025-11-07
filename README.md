@@ -24,31 +24,31 @@ The project is built using HTML, CSS and JavaSCript, and all data is automatical
 
 ## Technical Overview
 
-1. "app.js" - manages the Kanban board logic
+1. **app.js** - manages the Kanban board logic
   - Creating, editing and deliting tasks
   - Drag-and-drop functionality
   - Saving and loading tasks from "localStorage"
 
-2. "timer.js" - manages the Pomodoro timer logic
+2. **timer.js** - manages the Pomodoro timer logic
    - Time tracking, countdowns, and phase switching
    - Handles multiple focus and break cycles automatically
    - Provides navigation back to the main board
   
-The interface was first designed in "Figma", which helped visualize the layout and test usability before coding began.
-The layout uses "CSS Grid" to maintain a flexible, clean, and balanced design.
+The interface was first designed in **Figma**, which helped visualize the layout and test usability before coding began.
+The layout uses **CSS Grid** to maintain a flexible, clean, and balanced design.
 
 ---
 
 ## What I learned
 During the development of TrelloDoro, I learned to:
-  - Use "semantic HTML5 tags" effectively
-  - Design responsive layouts with "CSS Grid"
+  - Use **semantic HTML5 tags** effectively
+  - Design responsive layouts with **CSS Grid**
   - Work extensively with DOM manipulation in JavaScript
-  - Implement "drag-and-drop" interactions using "dragstart", "dragover", and "drop" events
-  - Store and retrive  data using "localStorage" and "JSON"
-  - Create timer-based logic using "setInterval()" and phase management
+  - Implement **drag-and-drop** interactions using `dragstart`, `dragover`, and `drop` events
+  - Store and retrive  data using *'localStorage** and **JSON**
+  - Create timer-based logic using **setInterval()** and phase management
   - Improve the "user experience" through interface design and testing
-  - Plan and execute a project from "idea -> prototype -> final product"
+  - Plan and execute a project from **idea -> prototype -> final product**
 
 ---
 
