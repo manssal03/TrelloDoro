@@ -1,4 +1,5 @@
 # TrelloDoro
+"This project was developed as part of a course and was selected as the best project."
 _A combined Trello and Pomodoro productivity tool_
 
 ## Summary
